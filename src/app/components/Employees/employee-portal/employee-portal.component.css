@@ -1,11 +1,33 @@
 .box1 {
   display: inline-block;
-  margin-left: 20px;
-  width: 1200px;
-  margin: auto;
+  width: 75rem;
+  overflow-x: scroll;
 }
-.t-body:hover {
+
+.table {
+  overflow-x: auto;
+}
+
+.table-body:hover {
   background-color: rgb(215, 215, 215);
+}
+@media only screen and (min-width: 1200px) {
+  .tab-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 1200px) and (min-width: 768px) {
+  .tab-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .tab-card {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
 
 .btn {
@@ -13,10 +35,10 @@
   margin-right: 50px;
 }
 
-.box {
+/* .box {
   display: inline-block;
   width: 21%;
-}
+} */
 
 .card {
   box-shadow: 5px 5px 20px rgb(65, 172, 255);
@@ -40,4 +62,11 @@
 .custom-delete {
   color: rgb(255, 31, 31);
   cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
 }

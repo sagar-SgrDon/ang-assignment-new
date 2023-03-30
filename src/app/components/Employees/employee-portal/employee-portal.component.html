@@ -8,7 +8,7 @@
       <ng-template tabHeading
         >Table <fa-icon [icon]="faTableCells"></fa-icon
       ></ng-template>
-      <div class="box1 m-5">
+      <div class="box1 table-responsive m-5">
         <table class="table text-center">
           <thead>
             <tr class="bg-dark text-white">
@@ -27,7 +27,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="t-body" *ngFor="let emp of employee">
+            <tr class="table-body" *ngFor="let emp of employee">
               <td>{{ emp.id }}</td>
               <td>
                 <img [src]="showImage(emp.firstName, emp.lastName)" alt="" />
@@ -71,33 +71,35 @@
       <ng-template tabHeading
         >Card <fa-icon [icon]="faAddressCard"></fa-icon
       ></ng-template>
-      <div *ngFor="let emp of employee" class="box m-4">
-        <div class="card" style="width: 19rem">
-          <img
-            [src]="showImage(emp.firstName, emp.lastName)"
-            class="card-img-top"
-            alt="Profile Image"
-          />
-          <div class="card-body">
-            <h5 class="card-title text-center">
-              {{ emp.firstName + " " + emp.lastName }}
-            </h5>
-            <p>ID : {{ emp.id }}</p>
-            <p>Age : {{ emp.age }}</p>
-            <p>Phone No. : {{ emp.contactNumber }}</p>
-            <p>Email : {{ emp.email }}</p>
-            <p>Address : {{ emp.address }}</p>
-            <div class="text-center">
-              <fa-icon
-                (click)="editEmployee(emp.id, emp)"
-                class="mx-5 fs-5 custom-edit"
-                [icon]="faEdit"
-              ></fa-icon
-              ><fa-icon
-                (click)="deleteEmp(emp.id)"
-                class="mx-5 fs-5 custom-delete"
-                [icon]="faTrash"
-              ></fa-icon>
+      <div class="tab-card">
+        <div *ngFor="let emp of employee" class="box m-5">
+          <div class="card" style="width: 18rem">
+            <img
+              [src]="showImage(emp.firstName, emp.lastName)"
+              class="card-img-top"
+              alt="Profile Image"
+            />
+            <div class="card-body">
+              <h4 class="card-title text-center">
+                {{ emp.firstName + " " + emp.lastName }}
+              </h4>
+              <p>ID : {{ emp.id }}</p>
+              <p>Age : {{ emp.age }}</p>
+              <p>Phone No. : {{ emp.contactNumber }}</p>
+              <p>Email : {{ emp.email }}</p>
+              <p>Address : {{ emp.address }}</p>
+              <div class="text-center">
+                <fa-icon
+                  (click)="editEmployee(emp.id, emp)"
+                  class="mx-5 fs-5 custom-edit"
+                  [icon]="faEdit"
+                ></fa-icon
+                ><fa-icon
+                  (click)="deleteEmp(emp.id)"
+                  class="mx-5 fs-5 custom-delete"
+                  [icon]="faTrash"
+                ></fa-icon>
+              </div>
             </div>
           </div>
         </div></div
