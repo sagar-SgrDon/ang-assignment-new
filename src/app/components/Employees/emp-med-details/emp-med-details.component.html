@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Employee Medical Details</h2>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Policy Name</th>
+        <th>Salary</th>
+        <th>Claimed Amount</th>
+        <th>Policy Max Amount</th>
+        <th>Balance</th>
+        <th>No. of Dependents</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empMedData of empMedData">
+        <td>{{ empMedData.id }}</td>
+        <td>{{ empMedData.policyName }}</td>
+        <td>{{ empMedData.salary | currency : "USD" }}</td>
+        <td>{{ empMedData.claimedAmount | currency : "USD" }}</td>
+        <td>
+          {{ calPolicyMaxAmount(empMedData.salary) | currency : "USD" }}
+        </td>
+        <td>
+          {{ calBalanceLeft(empMedData.claimedAmount) | currency : "USD" }}
+        </td>
+        <td>{{ empMedData.numberOfDependents }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

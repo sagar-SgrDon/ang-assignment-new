@@ -1,0 +1,43 @@
+.box1 {
+  display: inline-block;
+  margin-left: 20px;
+  width: 1200px;
+  margin: auto;
+}
+.t-body:hover {
+  background-color: rgb(215, 215, 215);
+}
+
+.btn {
+  float: right;
+  margin-right: 50px;
+}
+
+.box {
+  display: inline-block;
+  width: 21%;
+}
+
+.card {
+  box-shadow: 5px 5px 20px rgb(65, 172, 255);
+}
+
+.card:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+.action-icons {
+  display: inline-block;
+  margin: auto;
+  height: 2rem;
+}
+
+.custom-edit {
+  color: rgb(94, 94, 255);
+  cursor: pointer;
+}
+
+.custom-delete {
+  color: rgb(255, 31, 31);
+  cursor: pointer;
+}

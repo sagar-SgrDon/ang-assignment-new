@@ -1,0 +1,106 @@
+<div class="container my-5">
+  <button class="btn btn-danger" (click)="addEmployee()">
+    Add New Employee
+  </button>
+  <tabset>
+    <!-- TABLE -->
+    <tab id="tab1">
+      <ng-template tabHeading
+        >Table <fa-icon [icon]="faTableCells"></fa-icon
+      ></ng-template>
+      <div class="box1 m-5">
+        <table class="table text-center">
+          <thead>
+            <tr class="bg-dark text-white">
+              <th>#</th>
+              <th>Image</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th>Contact Number</th>
+              <th>Salary</th>
+              <th>Address</th>
+              <!-- <th>Profession</th>
+              <th>Sport Interest Rate</th> -->
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="t-body" *ngFor="let emp of employee">
+              <td>{{ emp.id }}</td>
+              <td>
+                <img [src]="showImage(emp.firstName, emp.lastName)" alt="" />
+              </td>
+              <td>{{ emp.firstName }}</td>
+              <td>{{ emp.lastName }}</td>
+              <td>{{ emp.email }}</td>
+              <td>{{ emp.age }}</td>
+              <td>{{ emp.contactNumber }}</td>
+              <td>{{ emp.salary | currency : "USD" }}</td>
+              <td>{{ emp.address }}</td>
+              <!-- <td>{{ emp.profession || " - " }}</td>
+              <td>{{ emp.sportIntRate || " - " }}</td> -->
+              <td>
+                <fa-icon
+                  (click)="editEmployee(emp.id, emp)"
+                  class="mx-2 custom-edit"
+                  [icon]="faEdit"
+                ></fa-icon
+                ><fa-icon
+                  (click)="deleteEmp(emp.id)"
+                  class="mx-2 custom-delete"
+                  [icon]="faTrash"
+                ></fa-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loaded" class="text-center text-primary">
+          Loading data...
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </tab>
+
+    <!-- CARD -->
+
+    <tab>
+      <ng-template tabHeading
+        >Card <fa-icon [icon]="faAddressCard"></fa-icon
+      ></ng-template>
+      <div *ngFor="let emp of employee" class="box m-4">
+        <div class="card" style="width: 19rem">
+          <img
+            [src]="showImage(emp.firstName, emp.lastName)"
+            class="card-img-top"
+            alt="Profile Image"
+          />
+          <div class="card-body">
+            <h5 class="card-title text-center">
+              {{ emp.firstName + " " + emp.lastName }}
+            </h5>
+            <p>ID : {{ emp.id }}</p>
+            <p>Age : {{ emp.age }}</p>
+            <p>Phone No. : {{ emp.contactNumber }}</p>
+            <p>Email : {{ emp.email }}</p>
+            <p>Address : {{ emp.address }}</p>
+            <div class="text-center">
+              <fa-icon
+                (click)="editEmployee(emp.id, emp)"
+                class="mx-5 fs-5 custom-edit"
+                [icon]="faEdit"
+              ></fa-icon
+              ><fa-icon
+                (click)="deleteEmp(emp.id)"
+                class="mx-5 fs-5 custom-delete"
+                [icon]="faTrash"
+              ></fa-icon>
+            </div>
+          </div>
+        </div></div
+    ></tab>
+  </tabset>
+</div>

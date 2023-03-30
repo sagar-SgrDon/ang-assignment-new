@@ -1,0 +1,21 @@
+@media only screen and (min-width: 600px) {
+  .card {
+    width: 33em;
+    height: 500px;
+    margin: 60px auto;
+    box-shadow: 5px 5px 20px rgb(124, 124, 251);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 25em;
+    height: 500px;
+    margin: 60px auto;
+    box-shadow: 5px 5px 20px rgb(124, 124, 251);
+  }
+}
+
+.form {
+  padding: 40px;
+}

@@ -1,0 +1,96 @@
+<nav class="navbar navbar-dark navbar-expand-lg sticky-top bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-3 mx-4" routerLink="/">
+      <fa-icon [icon]="faCircleUser"></fa-icon> HR</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mr-4 mb-2 mb-lg-0">
+        <!-- <ng-container *ngIf="user">
+          <li *ngIf="user" class="nav-item fs-5 mx-4">
+            <a class="nav-link" href="#">Employee Portal</a>
+          </li>
+          <li *ngIf="user" class="nav-item fs-5 mx-4">
+            <a class="nav-link" href="#">Employee Medical Records</a>
+          </li>
+          <li *ngIf="user" class="nav-item fs-5 mx-4">
+            <a class="nav-link" href="#">Charts</a>
+          </li>
+        </ng-container> -->
+        <li
+          *ngIf="authService.isLoggedIn()"
+          class="nav-item fs-5 mx-3 dropdown"
+        >
+          <a
+            class="nav-link custom dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              class="custom-img"
+              [src]="authService.currentUser.image"
+              alt=""
+            />
+            {{ authService.currentUser.firstName }}
+          </a>
+          <ul class="dropdown-menu fs-5">
+            <li>
+              <a
+                class="dropdown-item text-dark my-2 px-4"
+                routerLink="/employee"
+                >Employee Portal</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item text-dark my-2 px-4"
+                routerLink="/emp-medical-details"
+                >Medical Records</a
+              >
+            </li>
+            <!-- <li><hr class="dropdown-divider" /></li> -->
+            <li>
+              <a
+                class="dropdown-item text-dark my-2 px-4"
+                routerLink="/employee-charts"
+                >Charts</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="!authService.isLoggedIn()" class="nav-item fs-4 mx-5">
+          <a
+            class="nav-link custom mx-5 active"
+            aria-current="page"
+            routerLink="/login"
+            >Login</a
+          >
+        </li>
+        <li *ngIf="authService.isLoggedIn()" class="nav-item fs-5">
+          <a class="nav-link custom mx-5" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+      <!-- <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
+    </div>
+  </div>
+</nav>

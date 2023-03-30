@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1001,
+    "policyName": "xyz",
+    "salary": 100000,
+    "claimedAmount": 70000,
+    "numberOfDependents": 3
+  },
+  {
+    "id": 1002,
+    "policyName": "abc",
+    "salary": 200000,
+    "claimedAmount": 10000,
+    "numberOfDependents": 1
+  },
+  {
+    "id": 1003,
+    "policyName": "pyr",
+    "salary": 300000,
+    "claimedAmount": 80000,
+    "numberOfDependents": 2
+  },
+  {
+    "id": 1004,
+    "policyName": "vft",
+    "salary": 500000,
+    "claimedAmount": 30000,
+    "numberOfDependents": 4
+  },
+  {
+    "id": 1005,
+    "policyName": "mku",
+    "salary": 400000,
+    "claimedAmount": 125000,
+    "numberOfDependents": 6
+  },
+  {
+    "id": 1006,
+    "policyName": "gre",
+    "salary": 900000,
+    "claimedAmount": 47000,
+    "numberOfDependents": 3
+  },
+  {
+    "id": 1007,
+    "policyName": "htu",
+    "salary": 800000,
+    "claimedAmount": 84000,
+    "numberOfDependents": 2
+  },
+  {
+    "id": 1008,
+    "policyName": "der",
+    "salary": 600000,
+    "claimedAmount": 29000,
+    "numberOfDependents": 1
+  },
+  {
+    "id": 1009,
+    "policyName": "aet",
+    "salary": 700000,
+    "claimedAmount": 94000,
+    "numberOfDependents": 1
+  },
+  {
+    "id": 1010,
+    "policyName": "loi",
+    "salary": 550000,
+    "claimedAmount": 65000,
+    "numberOfDependents": 2
+  }
+]
