@@ -1,37 +1,51 @@
-<div class="card">
-  <h2 class="text-center pt-4">Login</h2>
+<div class="card pb-4">
+  <h2 class="text-center fs-4 pt-4">
+    <fa-icon [icon]="faCircleUser"></fa-icon> Login
+  </h2>
   <div class="card-body">
     <div class="container">
       <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
         <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
         <div class="mb-3 mb-4">
-          <label for="username" class="form-label">Username</label>
-          <input
-            type="text"
-            formControlName="username"
-            class="form-control"
-            id="username"
-          />
+          <label for="username" class="form-label fs-5">Username</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"
+              ><fa-icon [icon]="faUser"></fa-icon
+            ></span>
+            <input
+              type="text"
+              formControlName="username"
+              class="form-control"
+              id="username"
+            />
+          </div>
           <div
-            class="text text-danger"
+            class="text text-danger fs-6"
             *ngIf="username.touched && username.invalid"
           >
-            <div *ngIf="username.errors.required">username is required.</div>
+            <div *ngIf="username.errors.required">Username is required.</div>
           </div>
         </div>
         <div class="mb-3 my-4">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input
-            formControlName="password"
-            type="password"
-            class="form-control"
-            id="password"
-          />
+          <label for="exampleInputPassword1" class="form-label fs-5 my-3"
+            >Password</label
+          >
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"
+              ><fa-icon [icon]="faLock"></fa-icon
+            ></span>
+            <input
+              formControlName="password"
+              type="password"
+              class="form-control"
+              id="password"
+            />
+          </div>
           <div
-            class="text text-danger"
+            class="text text-danger fs-6"
             *ngIf="password.touched && password.invalid"
           >
-            <div *ngIf="password.errors.required">password is required.</div>
+            <div *ngIf="password.errors.required">Password is required.</div>
           </div>
         </div>
 

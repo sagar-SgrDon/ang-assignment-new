@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeePortalComponent } from './components/Employees/employee-portal/employee-portal.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
         './components/Employees/employee-charts/employee-charts.module'
       ).then((m) => m.EmployeeChartsModule),
   },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
