@@ -34,8 +34,14 @@ export class EmployeeCrudComponent implements OnInit {
       if (this.editEmp) {
         this.empData = this.sharedService.empData;
         this.form = this.fb.group({
-          firstName: [this.empData.firstName, Validators.required],
-          lastName: [this.empData.lastName, Validators.required],
+          firstName: [
+            this.empData.firstName,
+            [Validators.required, Validators.pattern(/^[a-zA-z ]*$/)],
+          ],
+          lastName: [
+            this.empData.lastName,
+            [Validators.required, Validators.pattern(/^[a-zA-z ]*$/)],
+          ],
           email: [this.empData.email, [Validators.required, Validators.email]],
           age: [this.empData.age, [Validators.required, Validators.min(1)]],
           contactNumber: [
@@ -44,6 +50,7 @@ export class EmployeeCrudComponent implements OnInit {
               Validators.required,
               Validators.minLength(10),
               Validators.maxLength(10),
+              Validators.pattern(/^-?(0|[1-9]\d*)?$/),
             ],
           ],
           salary: [
@@ -54,8 +61,14 @@ export class EmployeeCrudComponent implements OnInit {
         });
       } else {
         this.form = this.fb.group({
-          firstName: ['', Validators.required],
-          lastName: ['', Validators.required],
+          firstName: [
+            '',
+            [Validators.required, Validators.pattern(/^[a-zA-z]*$/)],
+          ],
+          lastName: [
+            '',
+            [Validators.required, Validators.pattern(/^[a-zA-z]*$/)],
+          ],
           email: ['', [Validators.required, Validators.email]],
           age: ['', [Validators.required, Validators.min(1)]],
           contactNumber: [
@@ -64,6 +77,7 @@ export class EmployeeCrudComponent implements OnInit {
               Validators.required,
               Validators.minLength(10),
               Validators.maxLength(10),
+              Validators.pattern(/^-?(0|[1-9]\d*)?$/),
             ],
           ],
           salary: ['', [Validators.required, Validators.min(1)]],

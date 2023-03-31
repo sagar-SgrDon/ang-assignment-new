@@ -23,7 +23,8 @@
           class="text text-danger"
           *ngIf="firstName.invalid && firstName.touched"
         >
-          First Name is required.
+          <div *ngIf="firstName.errors.required">First Name is required.</div>
+          <div *ngIf="firstName.errors.pattern">Only letters Allowed.</div>
         </div>
       </div>
       <div class="form-group my-4">
@@ -38,7 +39,8 @@
           class="text text-danger"
           *ngIf="lastName.invalid && lastName.touched"
         >
-          Last Name is required.
+          <div *ngIf="lastName.errors.required">Last Name is required.</div>
+          <div *ngIf="lastName.errors.pattern">Only letters Allowed.</div>
         </div>
       </div>
       <div class="form-group my-4">
@@ -107,13 +109,13 @@
 
           <div
             *ngIf="
-              (contactNumber.hasError('minlength') ||
-                contactNumber.hasError('maxlength')) &&
-              !contactNumber.errors.required
+              contactNumber.hasError('minlength') ||
+              contactNumber.hasError('maxlength')
             "
           >
             Please enter 10 digit mobile number.
           </div>
+          <div *ngIf="contactNumber.errors.pattern">Only digits Allowed.</div>
         </div>
       </div>
     </form>
