@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Chart } from 'chart.js';
+import { EmpChartService } from 'src/app/services/emp-chart.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -11,7 +12,11 @@ export class EmployeeChartsComponent {
   chartData: any;
   labelData: any[] = [];
   realData: any[] = [];
-  constructor(private employeeService: EmployeeService) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private empChartService: EmpChartService
+  ) {}
+
   ngOnInit() {
     this.employeeService.getEmployees().subscribe((res) => {
       this.chartData = res;
@@ -21,34 +26,24 @@ export class EmployeeChartsComponent {
         this.labelData.push(data.firstName + ' ' + data.lastName);
         this.realData.push(data.salary);
       }
-      this.renderChart(this.labelData, this.realData, 'bar', 'barchart');
-      this.renderChart(this.labelData, this.realData, 'pie', 'piechart');
-      this.renderChart(this.labelData, this.realData, 'line', 'linechart');
-    });
-  }
-
-  renderChart(labelData: string[], realData: number[], type: any, id: any) {
-    return new Chart(id, {
-      type: type,
-
-      data: {
-        labels: labelData,
-        datasets: [
-          {
-            label: 'Salary',
-            data: realData,
-            backgroundColor: [
-              'green',
-              'blue',
-              'orange',
-              'yellow',
-              'cyan',
-              'pink',
-              'red',
-            ],
-          },
-        ],
-      },
+      this.empChartService.renderChart(
+        this.labelData,
+        this.realData,
+        'bar',
+        'barchart'
+      );
+      this.empChartService.renderChart(
+        this.labelData,
+        this.realData,
+        'pie',
+        'piechart'
+      );
+      this.empChartService.renderChart(
+        this.labelData,
+        this.realData,
+        'line',
+        'linechart'
+      );
     });
   }
 }

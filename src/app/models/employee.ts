@@ -3,7 +3,7 @@ export interface Employee {
   firstName: string;
   lastName: string;
   age: number;
-  contactNumber: number;
+  contactNumber: string;
   address: string;
   email: string;
   salary: number;

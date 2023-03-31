@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { EmployeeMedical } from 'src/app/models/employeeMedical';
+import { EmpMedicalService } from 'src/app/services/emp-medical.service';
 import * as EmployeeMedicalDetails from '../../../../assets/json/empMed.json';
 
 @Component({
@@ -6,17 +11,45 @@ import * as EmployeeMedicalDetails from '../../../../assets/json/empMed.json';
   templateUrl: './emp-med-details.component.html',
   styleUrls: ['./emp-med-details.component.css'],
 })
-export class EmpMedDetailsComponent {
+export class EmpMedDetailsComponent implements AfterViewInit {
   policyMaxAmount!: number;
-  empMedData: any = (EmployeeMedicalDetails as any).default;
+  @ViewChild(MatSort) sort!: MatSort;
+  emp: string[] = [
+    'id',
+    'policyName',
+    'salary',
+    'claimedAmount',
+    'policyMaxAmount',
+    'balance',
+    'numberOfDependents',
+  ];
+  empMedData: EmployeeMedical[] = (EmployeeMedicalDetails as any).default;
+  dataSource = new MatTableDataSource(this.empMedData);
 
-  constructor() {}
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+    private empMedicalService: EmpMedicalService
+  ) {}
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
   calPolicyMaxAmount(salary: number) {
-    if (salary < 500000) return (this.policyMaxAmount = 1000000);
-    else return (this.policyMaxAmount = salary * 2.5);
+    this.policyMaxAmount = this.empMedicalService.calcPolicyMaxAmount(salary);
+    return this.policyMaxAmount;
   }
 
   calBalanceLeft(claimedAmount: number) {
     return this.policyMaxAmount - claimedAmount;
+  }
+
+  /* Announce the change in sort state for assistive technology. */
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 }

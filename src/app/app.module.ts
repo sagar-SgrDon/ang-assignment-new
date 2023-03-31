@@ -15,13 +15,11 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { EmployeeService } from './services/employee.service';
-import { NgChartsModule } from 'ng2-charts';
 import { EmployeeCrudComponent } from './components/Employees/employee-portal/employee-crud/employee-crud.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedService } from './services/shared.service';
 import { EmployeeInterceptor } from './interceptors/employee.interceptor';
 import { HomeComponent } from './components/home/home.component';
-import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -44,7 +42,6 @@ import { MatCardModule } from '@angular/material/card';
     LoadingBarRouterModule,
     TabsModule,
     NgbModule,
-    MatCardModule,
   ],
   providers: [
     AuthService,

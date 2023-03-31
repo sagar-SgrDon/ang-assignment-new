@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: EmpMedDetailsComponent,
-    canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
   },
 ];
 

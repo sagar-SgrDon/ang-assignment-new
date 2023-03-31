@@ -1,7 +1,20 @@
 .container {
-  width: 90%;
+  width: 100%;
   margin: 70px auto;
 }
 h2 {
   margin-bottom: 60px;
+}
+
+table {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+thead {
+  background-color: black;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
 }

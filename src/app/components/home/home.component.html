@@ -6,4 +6,8 @@
     life cycle (i.e., recruiting, hiring, onboarding, training, and firing
     employees) and administering employee benefits.
   </p>
+  <div class="fs-3" *ngIf="!isUser">
+    <a routerLink="/login"> Login Here </a>
+  </div>
+  <div class="fs-3 text" *ngIf="isUser">Now You can Manage Your Employees</div>
 </div>

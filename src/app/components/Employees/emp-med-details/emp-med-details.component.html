@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <h2>Employee Medical Details</h2>
   <table class="table text-center">
     <thead>
@@ -27,5 +27,123 @@
         <td>{{ empMedData.numberOfDependents }}</td>
       </tr>
     </tbody>
+  </table>
+</div> -->
+
+<div class="container">
+  <h2>Employee Medical Details</h2>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8"
+  >
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th
+        mat-header-cell
+        mat-sort-header
+        sortActionDescription="Sort by id"
+        *matHeaderCellDef
+      >
+        Id.
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- policyName Column -->
+    <ng-container matColumnDef="policyName">
+      <th
+        mat-header-cell
+        mat-sort-header
+        sortActionDescription="Sort by policyName"
+        *matHeaderCellDef
+      >
+        Policy Name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.policyName }}</td>
+    </ng-container>
+
+    <!-- salary Column -->
+    <ng-container matColumnDef="salary">
+      <th
+        mat-header-cell
+        mat-sort-header
+        sortActionDescription="Sort by salary"
+        *matHeaderCellDef
+      >
+        Salary
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.salary | currency : "USD" }}
+      </td>
+    </ng-container>
+
+    <!-- claimedAmount Column -->
+    <ng-container matColumnDef="claimedAmount">
+      <th
+        mat-header-cell
+        mat-sort-header
+        sortActionDescription="Sort by claimedAmount"
+        *matHeaderCellDef
+      >
+        Claimed Amount
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.claimedAmount | currency : "USD" }}
+      </td>
+    </ng-container>
+
+    <!-- policy max amount Column -->
+    <ng-container matColumnDef="policyMaxAmount">
+      <th
+        mat-header-cell
+        mat-sort-header
+        sortActionDescription="Sort by policyMaxAmount"
+        *matHeaderCellDef
+      >
+        Policy Max Amount
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ calPolicyMaxAmount(element.salary) | currency : "USD" }}
+      </td>
+    </ng-container>
+
+    <!-- balance left Column -->
+    <ng-container matColumnDef="balance">
+      <th
+        mat-header-cell
+        mat-sort-header
+        sortActionDescription="Sort by balance"
+        *matHeaderCellDef
+      >
+        Claimed Amount
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ calBalanceLeft(element.claimedAmount) | currency : "USD" }}
+      </td>
+    </ng-container>
+
+    <!-- dependents Column -->
+    <ng-container matColumnDef="numberOfDependents">
+      <th
+        mat-header-cell
+        mat-sort-header
+        sortActionDescription="Sort by numberOfDependents"
+        *matHeaderCellDef
+      >
+        No. of Dependents
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.numberOfDependents }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="emp"></tr>
+    <tr mat-row *matRowDef="let row; columns: emp"></tr>
   </table>
 </div>

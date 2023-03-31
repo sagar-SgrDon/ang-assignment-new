@@ -12,8 +12,13 @@
   <div class="container my-3">
     <form [formGroup]="form">
       <div class="form-group my-4">
-        <label for="">First Name</label>
-        <input type="text" formControlName="firstName" class="form-control" />
+        <label for="firstname">First Name</label>
+        <input
+          type="text"
+          name="firstname"
+          formControlName="firstName"
+          class="form-control"
+        />
         <div
           class="text text-danger"
           *ngIf="firstName.invalid && firstName.touched"
@@ -22,8 +27,13 @@
         </div>
       </div>
       <div class="form-group my-4">
-        <label for="">Last Name</label>
-        <input type="text" formControlName="lastName" class="form-control" />
+        <label for="lastname">Last Name</label>
+        <input
+          type="text"
+          name="lastname"
+          formControlName="lastName"
+          class="form-control"
+        />
         <div
           class="text text-danger"
           *ngIf="lastName.invalid && lastName.touched"
@@ -32,41 +42,58 @@
         </div>
       </div>
       <div class="form-group my-4">
-        <label for="">Age</label>
-        <input type="number" formControlName="age" class="form-control" />
+        <label for="age">Age</label>
+        <input
+          type="number"
+          name="age"
+          formControlName="age"
+          class="form-control"
+        />
         <div class="text text-danger" *ngIf="age.invalid && age.touched">
-          Age is required.
+          <div *ngIf="age.errors.required">Age is required.</div>
+          <div *ngIf="age.errors.min">Age must be greater than 0.</div>
         </div>
       </div>
       <div class="form-group my-4">
-        <label for="">Email Id</label>
-        <input type="email" formControlName="email" class="form-control" />
+        <label for="email">Email Id</label>
+        <input
+          type="email"
+          name="email"
+          formControlName="email"
+          class="form-control"
+        />
         <div class="text text-danger" *ngIf="email.invalid && email.touched">
           <div *ngIf="email.errors.required">Email is required.</div>
           <div *ngIf="email.errors.email">Enter Valid Email Address.</div>
         </div>
       </div>
       <div class="form-group my-4">
-        <label for="">Salary</label>
-        <input type="number" formControlName="salary" class="form-control" />
+        <label for="salary">Salary</label>
+        <input
+          type="number"
+          name="salary"
+          formControlName="salary"
+          class="form-control"
+        />
         <div class="text text-danger" *ngIf="salary.invalid && salary.touched">
-          Salary is required.
+          <div *ngIf="salary.errors.required">Salary is required.</div>
+          <div *ngIf="salary.errors.min">Salary must be a positive value.</div>
         </div>
       </div>
       <div class="form-group my-4">
-        <label for="">Address</label>
+        <label for="address">Address</label>
         <input type="text" formControlName="address" class="form-control" />
         <div
           class="text text-danger"
           *ngIf="address.invalid && address.touched"
         >
-          Address required
+          Address required.
         </div>
       </div>
       <div class="form-group my-4">
-        <label for="">Contact Number</label>
+        <label for="contactNumber">Contact Number</label>
         <input
-          type="number"
+          type="text"
           formControlName="contactNumber"
           class="form-control"
         />
@@ -74,7 +101,19 @@
           class="text text-danger"
           *ngIf="contactNumber.invalid && contactNumber.touched"
         >
-          Contact Number required
+          <div *ngIf="contactNumber.hasError('required')">
+            Contact Number required.
+          </div>
+
+          <div
+            *ngIf="
+              (contactNumber.hasError('minlength') ||
+                contactNumber.hasError('maxlength')) &&
+              !contactNumber.errors.required
+            "
+          >
+            Please enter 10 digit mobile number.
+          </div>
         </div>
       </div>
     </form>
@@ -82,39 +121,24 @@
 </div>
 <div class="modal-footer">
   <button
-    *ngIf="addEmp"
     type="submit"
     class="btn btn-primary"
     [disabled]="form.invalid"
-    (click)="addEmployee()"
+    (click)="addEmp ? addEmployee() : updateEmployee()"
   >
-    <div *ngIf="!disabled">Add Employee</div>
-    <div *ngIf="disabled">
+    <div *ngIf="!submitted">
+      {{ addEmp ? "Add Employee" : "Update Employee" }}
+    </div>
+    <div *ngIf="submitted">
       <span
         class="spinner-border spinner-border-sm"
         role="status"
         aria-hidden="true"
       ></span>
-      Adding...
+      {{ addEmp ? "Adding..." : "Updating..." }}
     </div>
   </button>
-  <button
-    *ngIf="editEmp"
-    type="submit"
-    class="btn btn-primary"
-    [disabled]="form.invalid"
-    (click)="updateEmployee()"
-  >
-    <div *ngIf="!disabled">Update Employee</div>
-    <div *ngIf="disabled">
-      <span
-        class="spinner-border spinner-border-sm"
-        role="status"
-        aria-hidden="true"
-      ></span>
-      Updating...
-    </div>
-  </button>
+
   <button
     type="button"
     class="btn btn-outline-dark"

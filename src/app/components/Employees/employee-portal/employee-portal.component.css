@@ -1,16 +1,14 @@
 .box1 {
-  display: inline-block;
-  width: 75rem;
-  overflow-x: scroll;
-}
-
-.table {
-  overflow-x: auto;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .table-body:hover {
   background-color: rgb(215, 215, 215);
 }
+
+/* Card Responsive */
+
 @media only screen and (min-width: 1200px) {
   .tab-card {
     display: grid;
@@ -54,6 +52,15 @@
   height: 2rem;
 }
 
+.table tbody tr:nth-child(even) {
+  background-color: rgb(236, 245, 255);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 .custom-edit {
   color: rgb(94, 94, 255);
   cursor: pointer;
@@ -64,9 +71,39 @@
   cursor: pointer;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
+/* Table Responsive */
+
+@media only screen and (max-width: 992px) {
+  .table thead {
+    display: none;
+  }
+
+  .table,
+  .table tbody,
+  .table td,
+  .table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    margin-bottom: 15px;
+  }
+
+  .table td {
+    text-align: right;
+    padding-right: 30px;
+    position: relative;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
 }

@@ -8,11 +8,11 @@
       <ng-template tabHeading
         >Table <fa-icon [icon]="faTableCells"></fa-icon
       ></ng-template>
-      <div class="box1 table-responsive m-5">
-        <table class="table text-center">
+      <div class="box1 my-5">
+        <table class="table my-5 text-center">
           <thead>
             <tr class="bg-dark text-white">
-              <th>#</th>
+              <th>id</th>
               <th>Image</th>
               <th>First Name</th>
               <th>Last Name</th>
@@ -28,20 +28,20 @@
           </thead>
           <tbody>
             <tr class="table-body" *ngFor="let emp of employee">
-              <td>{{ emp.id }}</td>
-              <td>
+              <td data-label="id">{{ emp.id }}</td>
+              <td data-label="Image">
                 <img [src]="showImage(emp.firstName, emp.lastName)" alt="" />
               </td>
-              <td>{{ emp.firstName }}</td>
-              <td>{{ emp.lastName }}</td>
-              <td>{{ emp.email }}</td>
-              <td>{{ emp.age }}</td>
-              <td>{{ emp.contactNumber }}</td>
-              <td>{{ emp.salary | currency : "USD" }}</td>
-              <td>{{ emp.address }}</td>
+              <td data-label="First Name">{{ emp.firstName }}</td>
+              <td data-label="Last Name">{{ emp.lastName }}</td>
+              <td data-label="Email">{{ emp.email }}</td>
+              <td data-label="Age">{{ emp.age }}</td>
+              <td data-label="Contact Number">{{ emp.contactNumber }}</td>
+              <td data-label="Salary">{{ emp.salary | currency : "USD" }}</td>
+              <td data-label="Address">{{ emp.address }}</td>
               <!-- <td>{{ emp.profession || " - " }}</td>
               <td>{{ emp.sportIntRate || " - " }}</td> -->
-              <td>
+              <td data-label="Actions">
                 <fa-icon
                   (click)="editEmployee(emp.id, emp)"
                   class="mx-2 custom-edit"

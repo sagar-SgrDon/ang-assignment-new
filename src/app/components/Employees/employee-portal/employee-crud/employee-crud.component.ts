@@ -17,7 +17,7 @@ export class EmployeeCrudComponent implements OnInit {
   id: string = this.sharedService.id;
   empData!: Employee;
   form: any;
-  disabled = false;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -37,9 +37,19 @@ export class EmployeeCrudComponent implements OnInit {
           firstName: [this.empData.firstName, Validators.required],
           lastName: [this.empData.lastName, Validators.required],
           email: [this.empData.email, [Validators.required, Validators.email]],
-          age: [this.empData.age, Validators.required],
-          contactNumber: [this.empData.contactNumber, Validators.required],
-          salary: [this.empData.salary, Validators.required],
+          age: [this.empData.age, [Validators.required, Validators.min(1)]],
+          contactNumber: [
+            this.empData.contactNumber,
+            [
+              Validators.required,
+              Validators.minLength(10),
+              Validators.maxLength(10),
+            ],
+          ],
+          salary: [
+            this.empData.salary,
+            [Validators.required, Validators.min(1)],
+          ],
           address: [this.empData.address, Validators.required],
         });
       } else {
@@ -47,9 +57,16 @@ export class EmployeeCrudComponent implements OnInit {
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
-          age: ['', Validators.required],
-          contactNumber: ['', Validators.required],
-          salary: ['', Validators.required],
+          age: ['', [Validators.required, Validators.min(1)]],
+          contactNumber: [
+            '',
+            [
+              Validators.required,
+              Validators.minLength(10),
+              Validators.maxLength(10),
+            ],
+          ],
+          salary: ['', [Validators.required, Validators.min(1)]],
           address: ['', Validators.required],
         });
       }
@@ -79,13 +96,13 @@ export class EmployeeCrudComponent implements OnInit {
   }
 
   addEmployee() {
-    this.disabled = true;
+    this.submitted = true;
     // console.log(this.form.value);
     this.employeeService.addEmployees(this.form.value).subscribe((res) => {
       if (res) {
         setTimeout(() => {
           this.form.reset();
-          this.disabled = false;
+          this.submitted = false;
           this.activeModal.close();
           this.sharedService.onDisplayEmployee();
         }, 1500);
@@ -94,14 +111,15 @@ export class EmployeeCrudComponent implements OnInit {
   }
 
   updateEmployee() {
-    this.disabled = true;
+    this.submitted = true;
+    // console.log(this.form.value);
     this.employeeService
       .updateEmployee(this.id, this.form.value)
       .subscribe((res) => {
         if (res) {
           setTimeout(() => {
             this.form.reset();
-            this.disabled = false;
+            this.submitted = false;
             this.activeModal.close();
             this.sharedService.onDisplayEmployee();
           }, 1500);

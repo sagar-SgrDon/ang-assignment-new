@@ -5,6 +5,7 @@ import { EmployeeChartsRoutingModule } from './employee-charts-routing.module';
 import { EmployeeChartsComponent } from './employee-charts.component';
 import { NgChartsModule } from 'ng2-charts';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { EmpChartService } from 'src/app/services/emp-chart.service';
 
 @NgModule({
   declarations: [EmployeeChartsComponent],
@@ -14,7 +15,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     NgChartsModule,
     TabsModule,
   ],
-  providers: [],
+  providers: [EmpChartService],
   exports: [],
 })
 export class EmployeeChartsModule {
